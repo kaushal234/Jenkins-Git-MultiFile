@@ -1,0 +1,48 @@
+pipeline {
+
+    agent any
+
+
+    stages {
+
+
+        stage('Create Build Folder') {
+
+            steps {
+
+                sh '''
+                mkdir -p build
+                '''
+
+            }
+        }
+
+
+        stage('Package Application') {
+
+            steps {
+
+                sh '''
+                cp app.py build/
+                cp requirements.txt build/
+
+                tar -czf python-app.tar.gz build/
+                '''
+
+            }
+        }
+
+
+        stage('Archive Build') {
+
+            steps {
+
+                archiveArtifacts artifacts: 'python-app.tar.gz'
+
+            }
+        }
+
+
+    }
+
+}
