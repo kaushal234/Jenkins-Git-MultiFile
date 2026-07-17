@@ -1,0 +1,59 @@
+pipeline {
+
+    agent any
+
+
+    stages {
+
+
+        stage('Deploy Start') {
+
+            steps {
+
+                echo "Starting deployment..."
+
+            }
+
+        }
+
+
+        stage('Copy Application') {
+
+            steps {
+
+                sh '''
+                echo "Copying Python application"
+                '''
+
+            }
+
+        }
+
+
+        stage('Restart Service') {
+
+            steps {
+
+                sh '''
+                echo "Restarting Python service"
+                '''
+
+            }
+
+        }
+
+
+    }
+
+
+    post {
+
+        success {
+
+            echo "Deployment successful"
+
+        }
+
+    }
+
+}
