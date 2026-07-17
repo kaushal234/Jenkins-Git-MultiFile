@@ -32,7 +32,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 sh '''
-                pytest test_app.py
+                python3 -m pytest test_app.py
                 '''
             }
         }
@@ -41,12 +41,14 @@ pipeline {
 
 
     post {
+
         success {
-            echo "Main pipeline completed successfully"
+            echo "Pipeline completed successfully"
         }
 
         failure {
             echo "Pipeline failed"
         }
+
     }
 }
